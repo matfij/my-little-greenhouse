@@ -1,0 +1,94 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Visual Studio / .NET
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+bin/
+obj/
+Debug/
+Release/
+TestResults/
+*.log
+*.pdb
+*.dbmdl
+*.cache
+artifacts/
+publish/
+AppPackages/
+
+# NuGet
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+
+# ASP.NET Core runtime and tooling
+wwwroot/node_modules/
+
+# Node / React
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnp/
+.pnp.js
+.lock-wscript
+build/
+dist/
+.cache/
+.next/
+out/
+coverage/
+public/static/
+.env
+.env.*.local
+.env.local
+
+# TypeScript
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+.pytest_cache/
+.mypy_cache/
+.pyre/
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Misc
+logs/
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
