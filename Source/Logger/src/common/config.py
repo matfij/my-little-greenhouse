@@ -1,0 +1,2 @@
+LOG_INTERVAL_S = 5
+LOG_DIR = "Logs"

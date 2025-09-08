@@ -1,18 +1,17 @@
-import os
-import csv
-from datetime import datetime
+import time
+from common.config import LOG_INTERVAL_S
+from inputs.temperature import process_temperature_log
 
 
-def init_log():
-    now = datetime.now()
-    file_path = os.path.join(
-        "..", "..", "Logs", "Temperature", f"temperature-{now.year}-{now.month}.csv")
-    os.makedirs(os.path.dirname(file_path), exist_ok=True)
-
-    if not os.path.exists(file_path):
-        with open(file_path, mode="w", newline="") as file:
-            writer = csv.writer(file)
-            writer.writerow(["timestamp", "temperature"])
+def main():
+    print("\nLogger started")
+    try:
+        while True:
+            time.sleep(LOG_INTERVAL_S)
+            process_temperature_log()
+    except KeyboardInterrupt:
+        print("\nLogger stopped")
 
 
-init_log()
+if __name__ == "__main__":
+    main()
