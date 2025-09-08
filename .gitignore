@@ -92,3 +92,19 @@ logs/
 *.temp
 *.bak
 *.swp
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+
+# SQLite databases
+*.db
+
+# Logs
+*.log
+nohup.out
