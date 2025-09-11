@@ -9,20 +9,11 @@ def get_current_timestamp():
     return int(datetime.timestamp(datetime.now()) * 1000)
 
 
-def find_repo_root():
-    path = Path(__file__).resolve()
-    for parent in path.parents:
-        if (parent / ".root").exists():
-            return parent
-
-
-def get_log_file_path(file_name: str):
-    repo_root = find_repo_root()
-    base = (repo_root / LOG_DIR).resolve()
-    now = datetime.now()
-    file_dir = base / file_name
-    file_dir.mkdir(parents=True, exist_ok=True)
-    return str(file_dir / f"{file_name}-{now.year}-{now.month:02}.csv")
+def get_log_file_path(domain: str):
+    base_path = os.environ.get("LOG_DIR_PATH")
+    logs_path = os.path.join(base_path, LOG_DIR)
+    file_name = f"{domain}-{datetime.now().year}-{datetime.now().month:02}.csv"
+    return os.path.join(logs_path, domain, file_name)
 
 
 def setup_log_file(file_path: str, columns: list[str]):

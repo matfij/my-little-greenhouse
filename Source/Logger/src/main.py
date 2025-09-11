@@ -1,4 +1,5 @@
 import time
+from dotenv import load_dotenv
 from common.config import LOG_INTERVAL_S
 from inputs.temperature import process_temperature_log
 from inputs.humidity import process_humidity_log
@@ -16,4 +17,5 @@ def main():
 
 
 if __name__ == "__main__":
+    load_dotenv()
     main()
