@@ -1,11 +1,11 @@
 import random
 from common.utils import get_log_file_path,  setup_log_file, append_log_file
 
-domain = "Temperature"
-columns = ["timestamp", "temperature"]
+domain = "Humidity"
+columns = ["timestamp", "humidity"]
 
 
-def process_temperature_log():
+def process_humidity_log():
     try:
         file_path = get_log_file_path(domain)
         setup_log_file(file_path, columns)
@@ -16,4 +16,4 @@ def process_temperature_log():
 
 
 def read_sensor_data():
-    return random.uniform(15, 30).__round__(2)
+    return random.uniform(40, 70).__round__(2)

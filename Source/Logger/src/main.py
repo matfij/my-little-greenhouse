@@ -1,6 +1,7 @@
 import time
 from common.config import LOG_INTERVAL_S
 from inputs.temperature import process_temperature_log
+from inputs.humidity import process_humidity_log
 
 
 def main():
@@ -9,6 +10,7 @@ def main():
         while True:
             time.sleep(LOG_INTERVAL_S)
             process_temperature_log()
+            process_humidity_log()
     except KeyboardInterrupt:
         print("\nLogger stopped")
 
