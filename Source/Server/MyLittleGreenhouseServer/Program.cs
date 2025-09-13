@@ -1,6 +1,8 @@
 using DotNetEnv;
+using Microsoft.Extensions.Configuration;
+using MyLittleGreenhouseServer.Readers;
 
-var builder = WebApplication.CreateBuilder(args);
+var app = WebApplication.Create();
 
 if (!File.Exists(".env"))
 {
@@ -8,10 +10,14 @@ if (!File.Exists(".env"))
 }
 Env.Load();
 
-var app = builder.Build();
+var logsPath = Environment.GetEnvironmentVariable("LOG_DIR_PATH") 
+    ?? throw new MissingMemberException("LOG_DIR_PATH not found");
+var takeLogs = app.Configuration.GetValue<int>("Pagination:TakeLogs");
 
-var logsDir = Environment.GetEnvironmentVariable("LOG_DIR_PATH");
+ITemperatureReader temperatureReader = new CsvTemperatureReader(logsPath);
 
-app.MapGet("/", () => "logs dir: " + logsDir);
+app.MapGet("/", () => "OK");
+
+app.MapGet("/temperatureLogs", () => temperatureReader.Read(takeLogs));
 
 app.Run();
