@@ -13,10 +13,12 @@ var logsPath = Environment.GetEnvironmentVariable("LOG_DIR_PATH")
     ?? throw new MissingMemberException("LOG_DIR_PATH not found");
 var takeLogs = app.Configuration.GetValue<int>("Pagination:TakeLogs");
 
-ITemperatureReader temperatureReader = new CsvTemperatureReader(logsPath);
+var temperatureReader = new CsvLogReader(logsPath, "Temperature");
+var humidityReader = new CsvLogReader(logsPath, "Humidity");
 
 app.MapGet("/", () => "OK");
 
-app.MapGet("/temperatureLogs", () => temperatureReader.Read(takeLogs));
+app.MapGet("/temperature", () => temperatureReader.Read(takeLogs));
+app.MapGet("/humidity", () => humidityReader.Read(takeLogs));
 
 app.Run();

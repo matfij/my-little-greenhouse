@@ -2,19 +2,19 @@
 
 namespace MyLittleGreenhouseServer.Readers;
 
-public interface ITemperatureReader
+public interface ILogReader
 {
-    public SensorLogs Read(int take);
+    public LogAggregate Read(int take);
 }
 
-public class CsvTemperatureReader(string basePath) : ITemperatureReader
+public class CsvLogReader(string basePath, string logDomain) : ILogReader
 {
-    private readonly string _basePath = Path.Join(basePath, "Temperature");
+    private readonly string _basePath = Path.Join(basePath, logDomain);
 
-    public SensorLogs Read(int take)
+    public LogAggregate Read(int take)
     {
         var timestamps = new List<long>();
-        var temperatures = new List<float>();
+        var values = new List<float>();
 
         var latestLogFile = Directory.GetFiles(_basePath).Order().Last();
 
@@ -29,10 +29,10 @@ public class CsvTemperatureReader(string basePath) : ITemperatureReader
                 continue;
             }
             if (long.TryParse(entries[0], out var timestamp)
-                && float.TryParse(entries[1], NumberStyles.Float, CultureInfo.InvariantCulture, out var temperature))
+                && float.TryParse(entries[1], NumberStyles.Float, CultureInfo.InvariantCulture, out var value))
             {
                 timestamps.Add(timestamp);
-                temperatures.Add(temperature);
+                values.Add(value);
             }
         }
 
@@ -40,8 +40,9 @@ public class CsvTemperatureReader(string basePath) : ITemperatureReader
 
         return new()
         {
+            Length = timestamps.Count - skip,
             Timestamps = timestamps.Skip(skip),
-            Values = temperatures.Skip(skip)
+            Values = values.Skip(skip)
         };
     }
 }
