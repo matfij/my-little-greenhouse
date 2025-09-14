@@ -1,7 +1,6 @@
 import os
 import csv
 from datetime import datetime
-from common.config import LOG_DIR
 
 
 def get_current_timestamp():
@@ -9,8 +8,7 @@ def get_current_timestamp():
 
 
 def get_log_file_path(domain: str):
-    base_path = os.environ.get("LOG_DIR_PATH")
-    logs_path = os.path.join(base_path, LOG_DIR)
+    logs_path = os.environ.get("LOG_DIR_PATH")
     file_name = f"{domain}-{datetime.now().year}-{datetime.now().month:02}.csv"
     return os.path.join(logs_path, domain, file_name)
 

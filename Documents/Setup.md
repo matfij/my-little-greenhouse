@@ -17,7 +17,9 @@ dotnet restore
 dotnet publish -c Release -o ./publish
 ```
 
-3. Setup Ngrok
+3. Crete `.env` file in `./publish` dir
+
+4. Setup Ngrok
 
 ```sh
 sudo apt-get install snapd
@@ -26,9 +28,9 @@ export PATH=$PATH:/snap/bin
 ngrok config add-authtoken paste_secret_token
 ```
 
-3. Start server
+5. Start server
 
 ```sh
-dotnet MyLittleGreenhouse.dll --urls "http://0.0.0.0:8080"
+dotnet MyLittleGreenhouseServer.dll --urls "http://0.0.0.0:8080"
 ngrok http 8080
 ```

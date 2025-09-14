@@ -1,5 +1,4 @@
 using DotNetEnv;
-using Microsoft.Extensions.Configuration;
 using MyLittleGreenhouseServer.Readers;
 
 var app = WebApplication.Create();

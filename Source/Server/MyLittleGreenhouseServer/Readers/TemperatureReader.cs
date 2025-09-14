@@ -23,7 +23,7 @@ public class CsvTemperatureReader(string basePath) : ITemperatureReader
 
         while ((line = reader.ReadLine()) is not null)
         {
-            var entries = line?.Split(",");
+            var entries = line.Split(",");
             if (entries is null || entries.Length != 2)
             {
                 continue;
