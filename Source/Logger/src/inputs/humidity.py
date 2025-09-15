@@ -1,4 +1,3 @@
-import random
 import board
 import adafruit_dht
 from common.utils import get_log_file_path,  setup_log_file, append_log_file
@@ -17,10 +16,9 @@ def process_humidity_log():
         print(f"Unable to process {domain} log: {e}")
 
 
+dht11 = adafruit_dht.DHT11(board.D4)
+
+
 def read_sensor_data():
-    dht11 = adafruit_dht.DHT11(board.D4)
-    temperature_c = dht11.temperature
-    humidity = dht11.humidity
-    print("temperature_c", temperature_c)
-    print("humidity", humidity)
-    return random.uniform(40, 70).__round__(2)
+    print("humidity", dht11.humidity)
+    return dht11.humidity.__round__(2)
