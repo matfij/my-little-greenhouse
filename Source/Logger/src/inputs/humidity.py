@@ -20,5 +20,4 @@ dht11 = adafruit_dht.DHT11(board.D4)
 
 
 def read_sensor_data():
-    print("humidity", dht11.humidity)
     return dht11.humidity.__round__(2)
