@@ -1,4 +1,5 @@
 import random
+import Adafruit_DHT
 from common.utils import get_log_file_path,  setup_log_file, append_log_file
 
 domain = "Humidity"
@@ -16,4 +17,9 @@ def process_humidity_log():
 
 
 def read_sensor_data():
+    pin = 4
+    sensor = Adafruit_DHT.DHT11
+    humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+    print("humidity", humidity)
+    print("temperature", temperature)
     return random.uniform(40, 70).__round__(2)
