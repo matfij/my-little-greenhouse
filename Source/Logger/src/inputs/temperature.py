@@ -1,5 +1,5 @@
-import random
 from common.utils import get_log_file_path,  setup_log_file, append_log_file
+from senseors.dht_11 import dht_11
 
 domain = "Temperature"
 columns = ["timestamp", "temperature"]
@@ -16,4 +16,4 @@ def process_temperature_log():
 
 
 def read_sensor_data():
-    return random.uniform(15, 30).__round__(2)
+    return dht_11.humidity.__round__(2)

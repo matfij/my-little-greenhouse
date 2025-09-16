@@ -32,5 +32,5 @@ ngrok config add-authtoken paste_secret_token
 
 ```sh
 dotnet MyLittleGreenhouseServer.dll --urls "http://0.0.0.0:8080"
-ngrok http 8080
+ngrok http --url=now-blastoporic-arie.ngrok-free.app 8080
 ```

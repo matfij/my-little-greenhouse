@@ -1,6 +1,5 @@
-import board
-import adafruit_dht
 from common.utils import get_log_file_path,  setup_log_file, append_log_file
+from senseors.dht_11 import dht_11
 
 domain = "Humidity"
 columns = ["timestamp", "humidity"]
@@ -16,8 +15,5 @@ def process_humidity_log():
         print(f"Unable to process {domain} log: {e}")
 
 
-dht11 = adafruit_dht.DHT11(board.D4)
-
-
 def read_sensor_data():
-    return dht11.humidity.__round__(2)
+    return dht_11.humidity.__round__(2)
