@@ -6,7 +6,7 @@ const resources = {
     en: { translation: en },
 };
 
-await i18next.use(initReactI18next).init({
+i18next.use(initReactI18next).init({
     resources,
     lng: 'en',
     fallbackLng: 'en',
