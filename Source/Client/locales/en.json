@@ -1,0 +1,15 @@
+{
+    "domain": {
+        "title": "My Little Greenhouse",
+        "temperatureHumidityTitle": "Temperature / Humidity"
+    },
+    "data": {
+        "time": "Time",
+        "temperature": "Temperature",
+        "humidity": "Humidity"
+    },
+    "units": {
+        "celsius": "°C",
+        "percent": "%"
+    }
+}
