@@ -1,8 +1,12 @@
+import time
+from common.config import LOG_VALUE_PRECISION
 from common.utils import get_log_file_path,  setup_log_file, append_log_file
 from senseors.dht_11 import dht_11
 
 domain = "Humidity"
 columns = ["timestamp", "humidity"]
+max_tries = 10
+retry_backoff_s = 2
 
 
 def process_humidity_log():
@@ -10,10 +14,20 @@ def process_humidity_log():
         file_path = get_log_file_path(domain)
         setup_log_file(file_path, columns)
         value = read_sensor_data()
-        append_log_file(file_path, value)
+        if value is not None:
+            append_log_file(file_path, value)
+        else:
+            print(f"{domain} sensor not responding")
     except Exception as e:
         print(f"Unable to process {domain} log: {e}")
 
 
 def read_sensor_data():
-    return dht_11.humidity.__round__(2)
+    for attempt in range(max_tries):
+        try:
+            humidity = dht_11.humidity
+            if humidity is not None:
+                return round(humidity, LOG_VALUE_PRECISION)
+        except:
+            pass
+        time.sleep(attempt * retry_backoff_s)
