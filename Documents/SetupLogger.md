@@ -26,6 +26,14 @@ LOG_DIR_PATH=/var/log/MyLittleGreenHouse/
 
 ```
 
+5. Setup I2C interface
+
+```sh
+sudo raspi-config  # enable I2C interface
+sudo apt-get install -y i2c-tools
+i2cdetect -y 1  # ensure address 29 occupied
+```
+
 5. Start application
 
 ```sh
