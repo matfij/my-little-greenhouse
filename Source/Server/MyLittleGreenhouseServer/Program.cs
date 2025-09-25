@@ -1,7 +1,23 @@
 using DotNetEnv;
 using MyLittleGreenhouseServer.Readers;
 
-var app = WebApplication.Create();
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy
+                .WithOrigins("*")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
+var app = builder.Build();
+
+app.UseCors("AllowFrontend");
 
 if (!File.Exists(".env"))
 {
@@ -9,7 +25,7 @@ if (!File.Exists(".env"))
 }
 Env.Load();
 
-var logsPath = Environment.GetEnvironmentVariable("LOG_DIR_PATH") 
+var logsPath = Environment.GetEnvironmentVariable("LOG_DIR_PATH")
     ?? throw new MissingMemberException("LOG_DIR_PATH not found");
 var takeLogs = app.Configuration.GetValue<int>("Pagination:TakeLogs");
 
