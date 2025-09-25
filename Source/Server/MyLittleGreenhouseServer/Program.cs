@@ -15,10 +15,12 @@ var takeLogs = app.Configuration.GetValue<int>("Pagination:TakeLogs");
 
 var temperatureReader = new CsvLogReader(logsPath, "Temperature");
 var humidityReader = new CsvLogReader(logsPath, "Humidity");
+var luxReader = new CsvLogReader(logsPath, "Lux");
 
 app.MapGet("/", () => "OK");
 
 app.MapGet("/temperature", () => temperatureReader.Read(takeLogs));
 app.MapGet("/humidity", () => humidityReader.Read(takeLogs));
+app.MapGet("/lux", () => luxReader.Read(takeLogs));
 
 app.Run();
