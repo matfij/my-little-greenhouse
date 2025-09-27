@@ -1,9 +1,10 @@
 import { CssBaseline, Paper, Typography } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
-import theme from './theme';
+import theme from '../theme';
 import { useEffect } from 'react';
-import { TemperatureHumidityChart } from './components/temperature-humidity-chart';
+import { TemperatureHumidityChart } from './temperature-humidity-chart';
+import { IlluminanceChart } from './illuminance-chart';
 
 export const AppComponent = () => {
     const { t } = useTranslation();
@@ -21,11 +22,13 @@ export const AppComponent = () => {
                     padding: '4rem 1rem',
                     display: 'flex',
                     flexDirection: 'column',
+                    alignItems: 'center',
                     textAlign: 'center',
                     gap: '2rem',
                 }}>
-                <Typography variant="h2">{t('domain.title')}</Typography>
+                <Typography variant="h3">{t('domain.title')}</Typography>
                 <TemperatureHumidityChart />
+                <IlluminanceChart />
             </Paper>
         </ThemeProvider>
     );

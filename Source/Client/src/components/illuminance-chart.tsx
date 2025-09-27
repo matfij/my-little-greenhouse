@@ -9,13 +9,13 @@ import {
     LinePlot,
 } from '@mui/x-charts';
 import { useTranslation } from 'react-i18next';
-import { useTemperatureHumidity } from './use-temperature-humidity';
+import { useIlluminance } from './use-illuminance';
 
-export const TemperatureHumidityChart = () => {
+export const IlluminanceChart = () => {
     const theme = useTheme();
     const { t } = useTranslation();
 
-    const { xAxis, yAxis, series } = useTemperatureHumidity();
+    const { xAxis, yAxis, series } = useIlluminance();
 
     return (
         <Box
@@ -29,17 +29,16 @@ export const TemperatureHumidityChart = () => {
                 gap: '1rem',
                 background: theme.palette.background.default,
             }}>
-            <Typography variant="h4">{t('domain.temperatureHumidityTitle')}</Typography>
-            <ChartContainer series={series} xAxis={xAxis} yAxis={yAxis}>
+            <Typography variant="h4">{t('domain.illuminanceTitle')}</Typography>
+            <ChartContainer xAxis={xAxis} yAxis={yAxis} series={series}>
                 <LinePlot />
-                <ChartsXAxis axisId="time" label={t('data.time')} tickLabelStyle={{ fontSize: 10 }} />
+                <ChartsXAxis axisId="time" label={t('data.time')} />
                 <ChartsYAxis
-                    axisId="temperature"
-                    label={`${t('data.temperature')} [${t('units.celsius')}]`}
+                    label={`${t('data.illuminance')} [${t('units.lux')}]`}
+                    sx={{ '&&&': { width: '100px' } }}
                 />
-                <ChartsYAxis axisId="humidity" label={`${t('data.humidity')} [${t('units.percent')}]`} />
-                <ChartsAxisHighlight x="line" />
                 <LineHighlightPlot />
+                <ChartsAxisHighlight x="line" />
                 <ChartsTooltip />
             </ChartContainer>
         </Box>

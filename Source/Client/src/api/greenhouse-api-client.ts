@@ -1,4 +1,4 @@
-import type { Domain } from './definitions';
+import type { Domain, LogAggregate } from './definitions';
 
 export class GreenHouseApiClient {
     private static readonly baseUrl = `https://now-blastoporic-arie.ngrok-free.app/`;
@@ -6,9 +6,9 @@ export class GreenHouseApiClient {
     public static async getSensorData(domain: Domain) {
         const response = await fetch(this.baseUrl + domain, {
             method: 'GET',
-            headers: { 'ngrok-skip-browser-warning': 'yes' },
+            headers: { 'ngrok-skip-browser-warning': 'true' },
         });
-        const data = await response.json();
+        const data = (await response.json()) as LogAggregate;
         return data;
     }
 }
