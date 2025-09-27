@@ -1,10 +1,8 @@
 import { useTheme } from '@mui/material';
 import type { AllSeriesType, XAxis, YAxis } from '@mui/x-charts';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
-const length = 50;
-const dt = 15 * 60 * 1000;
-const now = Date.now();
+import { GreenHouseApiClient } from '../api/greenhouse-api-client';
 
 const formatTimeHHMM = (date: Date) => {
     const hours = date.getHours().toString().padStart(2, '0');
@@ -16,9 +14,21 @@ export const useTemperatureHumidity = () => {
     const { t } = useTranslation();
     const theme = useTheme();
 
-    const time = Array.from({ length }, (_, index) => now + dt * index);
-    const temperature = Array.from({ length }, () => 10 * Math.random() + 15);
-    const humidity = Array.from({ length }, () => 60 * Math.random() + 25);
+    const [time, setTime] = useState<number[]>([]);
+    const [temperature, setTemperature] = useState<number[]>([]);
+    const [humidity, setHumidity] = useState<number[]>([]);
+
+    useEffect(() => {
+        void fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        const temperatureAggregate = await GreenHouseApiClient.getSensorData('temperature');
+        const humidityAggregate = await GreenHouseApiClient.getSensorData('humidity');
+        setTime(temperatureAggregate.timestamps);
+        setTemperature(temperatureAggregate.values);
+        setHumidity(humidityAggregate.values);
+    };
 
     const xAxis: XAxis[] = [
         {
