@@ -22,8 +22,9 @@ export const IlluminanceChart = () => {
             sx={{
                 width: '100%',
                 maxWidth: '64rem',
-                height: '27rem',
+                height: '25rem',
                 paddingTop: '1rem',
+                paddingRight: '80px',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '1rem',
@@ -33,10 +34,7 @@ export const IlluminanceChart = () => {
             <ChartContainer xAxis={xAxis} yAxis={yAxis} series={series}>
                 <LinePlot />
                 <ChartsXAxis axisId="time" label={t('data.time')} />
-                <ChartsYAxis
-                    label={`${t('data.illuminance')} [${t('units.lux')}]`}
-                    sx={{ '&&&': { width: '100px' } }}
-                />
+                <ChartsYAxis label={`${t('data.illuminance')} [${t('units.lux')}]`} />
                 <LineHighlightPlot />
                 <ChartsAxisHighlight x="line" />
                 <ChartsTooltip />

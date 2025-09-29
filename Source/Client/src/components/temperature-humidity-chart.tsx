@@ -22,7 +22,7 @@ export const TemperatureHumidityChart = () => {
             sx={{
                 width: '100%',
                 maxWidth: '64rem',
-                height: '27rem',
+                height: '25rem',
                 paddingTop: '1rem',
                 display: 'flex',
                 flexDirection: 'column',

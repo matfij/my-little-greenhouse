@@ -36,7 +36,7 @@ export const useIlluminance = () => {
     const yAxis: YAxis[] = [
         {
             id: 'illuminance',
-            data: time,
+            data: illuminance,
             scaleType: 'log',
             width: 70,
         },
