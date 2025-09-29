@@ -4,31 +4,35 @@ on:
   push:
     branches:
       - main
-  
-  permissions:
-    contents: write
 
-  jobs:
-    deploy:
-      runs-on: ubuntu-latest
+permissions:
+  contents: write
 
-      defaults:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    defaults:
       run:
         working-directory: Source/Client
 
-      steps:
-        - name: Checkout repository
-          uses: actions/checkout@v3
-        - name: Setup environment
-          uses: actions/setup-node@v3
-          with:
-            node-version: '22'
-        - name: Install dependencies
-          run: npm install
-        - name: Build app
-          run: npm run Build
-        - name: Deploy app
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: Source/Client/dist
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build app
+        run: npm run build
+
+      - name: Deploy app
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: Source/Client/dist
