@@ -80,7 +80,6 @@ build/
 pip-wheel-metadata/
 
 # IDEs
-.vscode/
 .idea/
 *.sublime-workspace
 *.sublime-project

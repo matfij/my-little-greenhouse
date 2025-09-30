@@ -1,4 +1,4 @@
-export type Domain = 'temperature' | 'humidity' | 'lux';
+export type Domain = 'temperature' | 'humidity' | 'illuminance';
 
 export interface LogAggregate {
     timestamps: number[];

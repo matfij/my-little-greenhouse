@@ -3,13 +3,13 @@ from common.config import LOG_VALUE_PRECISION
 from common.utils import get_log_file_path,  setup_log_file, append_log_file
 from senseors.tsl_2591 import tsl_2591
 
-domain = "Lux"
-columns = ["timestamp", "lux"]
+domain = "Illuminance"
+columns = ["timestamp", "illuminance"]
 max_tries = 3
 retry_backoff_s = 1
 
 
-def process_lux_log():
+def process_illuminance_log():
     try:
         file_path = get_log_file_path(domain)
         setup_log_file(file_path, columns)

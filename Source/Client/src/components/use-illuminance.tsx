@@ -16,7 +16,7 @@ export const useIlluminance = () => {
     }, []);
 
     const fetchData = async () => {
-        const illuminanceData = await GreenHouseApiClient.getSensorData('lux');
+        const illuminanceData = await GreenHouseApiClient.getSensorData('illuminance');
         setTime(illuminanceData.timestamps);
         setIlluminance(illuminanceData.values);
     };

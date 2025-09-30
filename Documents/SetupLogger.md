@@ -34,7 +34,7 @@ sudo apt-get install -y i2c-tools
 i2cdetect -y 1  # ensure address 29 occupied
 ```
 
-5. Start application
+6. Start application
 
 ```sh
 python src/main.py

@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from common.config import LOG_INTERVAL_S
 from inputs.temperature import process_temperature_log
 from inputs.humidity import process_humidity_log
-from inputs.lux import process_lux_log
+from Source.Logger.src.inputs.illuminance import process_illuminance_log
 
 
 def main():
@@ -13,7 +13,7 @@ def main():
             time.sleep(LOG_INTERVAL_S)
             process_temperature_log()
             process_humidity_log()
-            process_lux_log()
+            process_illuminance_log()
     except KeyboardInterrupt:
         print("\nLogger stopped")
 
