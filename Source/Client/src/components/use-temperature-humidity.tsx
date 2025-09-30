@@ -13,7 +13,6 @@ const formatTimeHHMM = (date: Date) => {
 export const useTemperatureHumidity = () => {
     const { t } = useTranslation();
     const theme = useTheme();
-
     const [time, setTime] = useState<number[]>([]);
     const [temperature, setTemperature] = useState<number[]>([]);
     const [humidity, setHumidity] = useState<number[]>([]);
