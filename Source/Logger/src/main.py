@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 from common.config import LOG_INTERVAL_S
 from inputs.temperature import process_temperature_log
 from inputs.humidity import process_humidity_log
-from Source.Logger.src.inputs.illuminance import process_illuminance_log
-from Source.Logger.src.inputs.moisture import process_moisture_log
+from inputs.illuminance import process_illuminance_log
+from inputs.moisture import process_moisture_log
 
 
 def main():
