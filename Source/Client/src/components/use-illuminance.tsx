@@ -37,8 +37,10 @@ export const useIlluminance = () => {
         {
             id: 'illuminance',
             data: illuminance,
-            scaleType: 'log',
+            scaleType: 'symlog',
             width: 70,
+            min: Math.min(...illuminance),
+            max: Math.max(...illuminance),
         },
     ];
 
@@ -49,7 +51,6 @@ export const useIlluminance = () => {
             data: illuminance,
             color: theme.palette.earth?.sand,
             xAxisId: 'time',
-            
         },
     ];
 
