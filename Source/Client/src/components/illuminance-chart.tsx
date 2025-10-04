@@ -33,7 +33,7 @@ export const IlluminanceChart = () => {
             <Typography variant="h4">{t('domain.illuminanceTitle')}</Typography>
             <ChartContainer xAxis={xAxis} yAxis={yAxis} series={series}>
                 <LinePlot />
-                <ChartsXAxis axisId="time" label={t('data.time')} />
+                <ChartsXAxis axisId="time" label={t('data.time')} tickLabelStyle={{ fontSize: 10 }} />
                 <ChartsYAxis label={`${t('data.illuminance')} [${t('units.lux')}]`} />
                 <LineHighlightPlot />
                 <ChartsAxisHighlight x="line" />
